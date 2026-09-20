@@ -142,7 +142,12 @@ def main():
                 elif '401' in error or 'authentication' in error:
                     st.error('Groq rejected the API key. Update GROQ_API_KEY in Streamlit Secrets.')
                 else:
-                    st.error('Research could not finish. Check your Groq key/model access and retry. Search or API availability may be temporary.')
+    st.error("Research failed. Diagnostic details:")
+    safe_error = str(exc).replace(api_key, "[REDACTED]")
+    st.code(
+        f"{type(exc).__name__}: {safe_error}",
+        language="text"
+    )
     if 'result' in st.session_state:
         result = st.session_state.result
         st.subheader(result['topic'])
