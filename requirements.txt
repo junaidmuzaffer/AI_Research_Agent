@@ -1,0 +1,3 @@
+streamlit==1.52.2
+crewai[litellm]==1.15.22
+ddgs==9.16.0
